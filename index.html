@@ -1,154 +1,87 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아케이드 게임 포털</title>
-    <style>
-        body {
-            margin: 0;
-            background: #0f0f13;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        h1 {
-            font-size: 32px;
-            margin: 0 0 10px 0;
-            background: linear-gradient(45deg, #00ffcc, #ff0077);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-        }
-        p {
-            color: #888;
-            font-size: 15px;
-            margin: 0;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 960px;
-        }
-        .card {
-            background: #1a1a24;
-            border: 1px solid #2a2a3d;
-            border-radius: 12px;
-            padding: 24px;
-            text-decoration: none;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #00ffcc;
-            box-shadow: 0 8px 20px rgba(0, 255, 204, 0.2);
-        }
-        .card-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #00ffcc;
-        }
-        .card-desc {
-            font-size: 14px;
-            color: #aaa;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        .card-footer {
-            font-size: 13px;
-            font-weight: bold;
-            color: #ff0077;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .card-footer::after {
-            content: "→";
-            transition: transform 0.2s ease;
-        }
-        .card:hover .card-footer::after {
-            transform: translateX(4px);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>나의 AI 포트폴리오</title>
+<style>
+  :root{ --bg:#f4f5f7; --card:#ffffff; --ink:#1b1b1f; --muted:#6b6f76;
+         --line:#e3e5e9; --accent:#1f6feb; --chip:#eef3fb; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:"Malgun Gothic","맑은 고딕",system-ui,-apple-system,sans-serif;
+       line-height:1.6;padding:0 16px 56px}
+  .wrap{max-width:900px;margin:0 auto}
+  header{padding:48px 0 28px}
+  h1{font-size:34px;margin:0 0 6px}
+  .tagline{color:var(--muted);font-size:17px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;
+          padding:26px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  h2{font-size:15px;color:var(--muted);font-weight:700;margin:0 0 14px;letter-spacing:.02em}
+  p{margin:0 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .chip{background:var(--chip);color:#2b4b7e;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:640px){.cards{grid-template-columns:1fr}}
+  .work{background:#f7f8fa;border:1px solid var(--line);border-radius:12px;padding:18px}
+  .work h3{margin:0 0 6px;font-size:17px}
+  .work p{color:var(--muted);font-size:14px;margin:0}
+  .feature{display:flex;align-items:center;justify-content:space-between;gap:16px;
+           flex-wrap:wrap;background:#e7f0ff;border:1px solid #cfe0ff;border-radius:14px;padding:22px}
+  .feature .t{font-size:19px;font-weight:800;margin:0 0 4px}
+  .feature .d{color:#3a5a86;font-size:14px;margin:0}
+  .btn{display:inline-block;background:#252528;color:#fff;text-decoration:none;
+       padding:12px 22px;border-radius:10px;font-weight:700;white-space:nowrap}
+  .btn:hover{background:#000}
+  .contact a{color:var(--accent);text-decoration:none}
+  footer{color:var(--muted);font-size:13px;text-align:center;padding-top:8px}
+</style>
 </head>
 <body>
+<div class="wrap">
+  <header>
+    <h1>나의 AI 포트폴리오</h1>
+    <div class="tagline">만들고, 배우고, 연결합니다.</div>
+  </header>
 
-    <header>
-        <h1>ARCADE PORTAL</h1>
-        <p>웹 브라우저로 즐기는 미니 아케이드 게임 모음</p>
-    </header>
-
-    <div class="container">
-        <!-- Game 1 -->
-        <a href="game1.html" class="card">
-            <div>
-                <div class="card-title">GAME 01</div>
-                <div class="card-desc">사운드와 함께 즐기는 클래식 벽돌깨기 게임. 패들을 움직여 모든 벽돌을 부숴보세요!</div>
-            </div>
-            <div class="card-footer">플레이하기</div>
-        </a>
-
-        <!-- Game 2 -->
-        <a href="game2.html" class="card">
-            <div>
-                <div class="card-title">GAME 02</div>
-                <div class="card-desc">두 번째 미니 게임을 준비 중입니다. 새로운 재미가 곧 추가됩니다.</div>
-            </div>
-            <div class="card-footer">플레이하기</div>
-        </a>
-
-        <!-- Game 3 -->
-        <a href="game3.html" class="card">
-            <div>
-                <div class="card-title">GAME 03</div>
-                <div class="card-desc">세 번째 미니 게임을 위한 빈 공간입니다. 파일명을 맞춰 추가해 보세요.</div>
-            </div>
-            <div class="card-footer">플레이하기</div>
-        </a>
-
-        <!-- Game 4 -->
-        <a href="game4.html" class="card">
-            <div>
-                <div class="card-title">GAME 04</div>
-                <div class="card-desc">네 번째 미니 게임을 위한 빈 공간입니다. 파일명을 맞춰 추가해 보세요.</div>
-            </div>
-            <div class="card-footer">플레이하기</div>
-        </a>
-
-        <!-- Game 5 -->
-        <a href="game5.html" class="card">
-            <div>
-                <div class="card-title">GAME 05</div>
-                <div class="card-desc">다섯 번째 미니 게임을 위한 빈 공간입니다. 파일명을 맞춰 추가해 보세요.</div>
-            </div>
-            <div class="card-footer">플레이하기</div>
-        </a>
-
-        <!-- Game 6 -->
-        <a href="game6.html" class="card">
-            <div>
-                <div class="card-title">GAME 06</div>
-                <div class="card-desc">여섯 번째 미니 게임을 위한 빈 공간입니다. 파일명을 맞춰 추가해 보세요.</div>
-            </div>
-            <div class="card-footer">플레이하기</div>
-        </a>
+  <section>
+    <h2>자기소개 · 관심 분야</h2>
+    <p>AI 도구로 웹·영상·데이터를 직접 만들어 보며 배우는 과정을 기록합니다.
+       아이디어를 빠르게 시제품으로 옮기고, 결과를 공개해 피드백을 받는 것을 좋아합니다.</p>
+    <div class="chips">
+      <span class="chip">프롬프트</span>
+      <span class="chip">웹 제작</span>
+      <span class="chip">AI 영상</span>
+      <span class="chip">데이터 분석</span>
     </div>
+  </section>
 
+  <section>
+    <h2>대표 작품</h2>
+    <div class="cards">
+      <div class="work"><h3>웹 게임</h3><p>브라우저에서 실행되는 벽돌깨기 · 퀴즈 게임</p></div>
+      <div class="work"><h3>AI 음악</h3><p>분위기와 용도에 맞춰 만든 배경 음악</p></div>
+      <div class="work"><h3>AI 광고 영상</h3><p>이미지에서 영상으로 · 브랜드 소개 영상</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>실행형 작품</h2>
+    <div class="feature">
+      <div>
+        <p class="t">카페 매출 계산기</p>
+        <p class="d">판매가격·판매량·원가를 입력해 예상 매출과 매출총이익을 확인하는 웹앱</p>
+      </div>
+      <a class="btn" href="cafe-calculator/">계산기 실행하기 →</a>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>연락 방법</h2>
+    <p>공개 가능한 외부 링크로 연결합니다. (강의 채널 · 이메일 등)</p>
+  </section>
+
+  <footer>AI 부트캠프 · MAKE 학습 결과물 · bootcamp-make.github.io</footer>
+</div>
 </body>
 </html>
